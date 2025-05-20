@@ -1,1 +1,0 @@
-# synestela.github.io
