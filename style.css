@@ -528,14 +528,14 @@ body {
     *::before,
     *::after {
         animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 ! important;
+        animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
     }
 }
 
 /* --- High Contrast Mode --- */
 @media (prefers-contrast: high) {
-    : root {
+    :root {
         --primary-color: #0000ff;
         --success-color: #008000;
         --error-color: #ff0000;
