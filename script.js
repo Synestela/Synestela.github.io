@@ -59,28 +59,40 @@ document.addEventListener('DOMContentLoaded', () => {
         // 2. EVALUATION: Determine the suggestion based on the flowchart logic
         let suggestion = '';
 
+        // Follow the exact flowchart logic
         if (selections.mood === 'happy') {
+            // Is energy high?
             if (selections.energy === 'high') {
-                suggestion = 'Continue with your planned activity';
+                suggestion = 'Continue with your planned activity'; // R1
             } else { // energy is 'low'
-                suggestion = 'Wait before starting a new task';
-            }
-        } else if (selections.mood === 'neutral') {
-            if (selections.stress === 'high') {
-                suggestion = 'Take a short breathing break';
-            } else { // stress is 'low'
-                suggestion = 'Proceed with light mental tasks';
-            }
-        } else if (selections.mood === 'sad') {
-            if (selections.sleep === 'poor') {
-                suggestion = 'Rest before continuing your day';
-            } else { // sleep is 'adequate'
-                suggestion = 'Choose a comforting activity';
+                suggestion = 'Wait before starting a new task'; // R2
             }
         } else {
-            // This 'else' block handles the "unrecognized mood" or fallback case
-            // from the flowchart (the 'No' path after checking 'sad').
-            suggestion = 'Focus on emotional recovery';
+            // Is mood neutral?
+            if (selections.mood === 'neutral') {
+                // Is stress high?
+                if (selections.stress === 'high') {
+                    suggestion = 'Take a short breathing break'; // R3
+                } else { // stress is 'low'
+                    suggestion = 'Proceed with light mental tasks'; // R4
+                }
+            } else {
+                // Is mood sad?
+                if (selections.mood === 'sad') {
+                    // Is sleep poor?
+                    if (selections.sleep === 'poor') {
+                        suggestion = 'Rest before continuing your day'; // R5
+                    } else { // sleep is 'adequate'
+                        suggestion = 'Choose a comforting activity'; // R6
+                    }
+                } else if (selections.mood === 'unsure') {
+                    // Not sure about mood leads to emotional recovery
+                    suggestion = 'Focus on emotional recovery'; // R7
+                } else {
+                    // This handles any other mood value (fallback case)
+                    suggestion = 'Focus on emotional recovery'; // R7
+                }
+            }
         }
 
         // 3. DISPLAY: Show the final suggestion to the user
