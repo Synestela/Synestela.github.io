@@ -535,7 +535,7 @@ body {
 
 /* --- High Contrast Mode --- */
 @media (prefers-contrast: high) {
-    :root {
+    : root {
         --primary-color: #0000ff;
         --success-color: #008000;
         --error-color: #ff0000;
