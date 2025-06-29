@@ -1,220 +1,76 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hiss - Silent Emotional Sharing</title>
+    <title>MiniMood - Emotional Check-in</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Dynamic Background Effects -->
-    <div class="floating-particles"></div>
-    <div class="bg-orb bg-orb-1"></div>
-    <div class="bg-orb bg-orb-2"></div>
-    <div class="bg-orb bg-orb-3"></div>
+    <div class="container">
+        <header>
+            <h1>MiniMood</h1>
+            <p>Reflect on your current state and get a helpful suggestion for your day.</p>
+        </header>
 
-    <!-- Opening Animation Screen -->
-    <div id="opening-animation" class="opening-animation active">
-        <div class="animation-content">
-            <div class="logo-container">
-                <h1 class="animated-logo">Hiss</h1>
-                <div class="floating-emojis">
-                    <span class="floating-emoji" style="--delay: 0s;">😊</span>
-                    <span class="floating-emoji" style="--delay: 0.5s;">😔</span>
-                    <span class="floating-emoji" style="--delay: 1s;">😠</span>
-                    <span class="floating-emoji" style="--delay: 1.5s;">😴</span>
-                    <span class="floating-emoji" style="--delay: 2s;">😍</span>
-                    <span class="floating-emoji" style="--delay: 2.5s;">🤔</span>
-                </div>
-                <div class="pulse-circle"></div>
-                <div class="pulse-circle pulse-delay-1"></div>
-                <div class="pulse-circle pulse-delay-2"></div>
-            </div>
-            <p class="animated-tagline">Silent Emotional Sharing</p>
-            <div class="loading-dots">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </div>
-
-    <!-- Landing Screen -->
-    <div id="landing-screen" class="screen">
-        <div class="content-wrapper">
-            <h1>Hiss</h1>
-            <p class="tagline">Silent Emotional Sharing</p>
-            <p class="description">
-                Share how you feel without words. Use a combination of emoji, color, and sound to express your emotional state anonymously.
-            </p>
-            <button id="get-started-btn">Get Started</button>
-        </div>
-    </div>
-
-    <!-- Language Selector -->
-    <div id="language-selector" class="language-selector">
-        <button id="lang-en" class="lang-btn active" data-lang="en">EN</button>
-        <button id="lang-tr" class="lang-btn" data-lang="tr">TR</button>
-    </div>
-
-    <!-- Main App Container (hidden initially) -->
-    <div id="app-container">
-        <main id="main-content">
-            <!-- Share Screen -->
-            <div id="share-screen" class="screen">
-                <div class="content-wrapper">
-                    <h2>How are you feeling right now?</h2>
-                    
-                    <p class="label">1. Select an emoji</p>
-                    <div id="emoji-selector" class="selector-container">
-                        <span>😊</span>
-                        <span>😔</span>
-                        <span>😠</span>
-                        <span>😴</span>
-                        <span>😍</span>
-                        <span>🤔</span>
-                    </div>
-
-                    <p class="label">2. Select a color</p>
-                    <div id="color-selector" class="selector-container">
-                        <div class="color-box" style="background-color: #f7d794;"></div>
-                        <div class="color-box" style="background-color: #778beb;"></div>
-                        <div class="color-box" style="background-color: #e77f67;"></div>
-                        <div class="color-box" style="background-color: #63cdda;"></div>
-                        <div class="color-box" style="background-color: #cf6a87;"></div>
-                        <div class="color-box" style="background-color: #596275;"></div>
-                    </div>
-
-                    <p class="label">3. Record a short sound</p>
-                    <button id="sound-record-btn" data-text="record_sound">🎤 Tap to Record Sound</button>
-                    <div class="record-instruction" id="record-instruction">Tap to record again</div>
-
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="progress-fill"></div>
-                    </div>
-                    <div id="feedback-message" class="feedback" data-text="start_sharing">Start sharing your feelings! 🎭</div>
-                    <button id="share-btn" data-text="share_feeling">Share Feeling</button>
+        <main>
+            <!-- Mood Selection Group -->
+            <div class="input-group" id="mood-group">
+                <h2>How is your mood?</h2>
+                <div class="options">
+                    <button class="option-btn" data-category="mood" data-value="happy">Happy</button>
+                    <button class="option-btn" data-category="mood" data-value="neutral">Neutral</button>
+                    <button class="option-btn" data-category="mood" data-value="sad">Sad</button>
                 </div>
             </div>
 
-            <!-- Anonymous Feed Screen -->
-            <div id="feed-screen" class="screen">
-                 <div class="content-wrapper">
-                    <div class="feed-header">
-                        <h2>Today's Feelings</h2>
-                        <div class="feed-stats">
-                            <div class="stat-item">
-                                <span class="stat-number" id="total-feelings">127</span>
-                                <span class="stat-label">feelings shared</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number" id="active-users">23</span>
-                                <span class="stat-label">people online</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="feed-filters">
-                        <button class="filter-btn active" data-filter="all">All</button>
-                        <button class="filter-btn" data-filter="😊">😊 Happy</button>
-                        <button class="filter-btn" data-filter="😔">😔 Sad</button>
-                        <button class="filter-btn" data-filter="😠">😠 Angry</button>
-                        <button class="filter-btn" data-filter="😴">😴 Tired</button>
-                        <button class="filter-btn" data-filter="😍">😍 Excited</button>
-                        <button class="filter-btn" data-filter="🤔">🤔 Thinking</button>
-                    </div>
-                    
-                    <div class="live-indicator">
-                        <div class="pulse-dot"></div>
-                        <span>Live feed</span>
-                    </div>
-                    
-                    <div id="feed-container">
-                        <!-- Posts will be generated by JS -->
-                    </div>
-                 </div>
+            <!-- Sleep Selection Group -->
+            <div class="input-group" id="sleep-group">
+                <h2>How was your sleep?</h2>
+                <div class="options">
+                    <button class="option-btn" data-category="sleep" data-value="poor">Poor</button>
+                    <button class="option-btn" data-category="sleep" data-value="adequate">Adequate</button>
+                </div>
             </div>
 
-            <!-- Mood Calendar Screen -->
-            <div id="calendar-screen" class="screen">
-                <div class="content-wrapper">
-                    <h2>Your Mood Calendar</h2>
-                    <p class="description">Each square represents a day's dominant feeling.</p>
-                    <div id="calendar-grid">
-                        <!-- Calendar days will be generated by JS -->
-                    </div>
-                    <button id="mood-analysis-btn">Request Mood Analysis</button>
-                 </div>
+            <!-- Energy Selection Group -->
+            <div class="input-group" id="energy-group">
+                <h2>What is your energy level?</h2>
+                <div class="options">
+                    <button class="option-btn" data-category="energy" data-value="low">Low</button>
+                    <button class="option-btn" data-category="energy" data-value="high">High</button>
+                </div>
             </div>
 
-            <!-- Mood Analysis Results Screen -->
-            <div id="analysis-screen" class="screen">
-                <div class="content-wrapper">
-                    <h2>🎭 Your Mood Analysis</h2>
-                    <div id="analysis-content">
-                        <div class="analysis-section">
-                            <h3>📊 Most Common Emotions</h3>
-                            <div id="emotion-stats" class="stats-container"></div>
-                        </div>
-                        
-                        <div class="analysis-section">
-                            <h3>📈 Trends & Patterns</h3>
-                            <div id="trend-insights" class="insights-container"></div>
-                        </div>
-                        
-                        <div class="analysis-section">
-                            <h3>💡 Personal Insights</h3>
-                            <div id="personal-insights" class="insights-container"></div>
-                        </div>
-                    </div>
-                    <button id="back-to-calendar-btn">Back to Calendar</button>
-                 </div>
+            <!-- Stress Selection Group -->
+            <div class="input-group" id="stress-group">
+                <h2>What is your stress level?</h2>
+                <div class="options">
+                    <button class="option-btn" data-category="stress" data-value="low">Low</button>
+                    <button class="option-btn" data-category="stress" data-value="high">High</button>
+                </div>
+            </div>
+
+            <!-- Action Button -->
+            <button id="get-suggestion-btn">Get Suggestion</button>
+
+            <!-- Error Message Container (hidden by default) -->
+            <div id="error-message" class="message" style="display: none;">
+                Please make a selection for all four categories.
+            </div>
+
+            <!-- Result Container (hidden by default) -->
+            <div id="result-container" class="message" style="display: none;">
+                <p id="suggestion-text"></p>
             </div>
         </main>
-        
-        <!-- Navigation -->
-        <nav id="main-nav">
-            <button data-target="share-screen" class="nav-btn active">Share</button>
-            <button data-target="feed-screen" class="nav-btn">Feed</button>
-            <button data-target="calendar-screen" class="nav-btn">Calendar</button>
-        </nav>
+
+        <footer>
+            <p>Created based on your emotional inputs.</p>
+        </footer>
     </div>
 
-    <!-- Audio elements for different emotions -->
-    <audio id="audio-happy" preload="auto">
-        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav">
-        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBnOq4fC3ZSEHXbXq6qhWFAlHoODyvWsg" type="audio/wav">
-    </audio>
-    
-    <audio id="audio-sad" preload="auto">
-        <source src="https://www.soundjay.com/misc/sounds/fail-buzzer-02.wav" type="audio/wav">
-        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBnOq4fC3ZSEHXbXq6qhWFAlHoODyvWsg" type="audio/wav">
-    </audio>
-    
-    <audio id="audio-angry" preload="auto">
-        <source src="https://www.soundjay.com/misc/sounds/typewriter-key-1.wav" type="audio/wav">
-        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBnOq4fC3ZSEHXbXq6qhWFAlHoODyvWsg" type="audio/wav">
-    </audio>
-    
-    <audio id="audio-tired" preload="auto">
-        <source src="https://www.soundjay.com/misc/sounds/yawn-1.wav" type="audio/wav">
-        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBnOq4fC3ZSEHXbXq6qhWFAlHoODyvWsg" type="audio/wav">
-    </audio>
-    
-    <audio id="audio-excited" preload="auto">
-        <source src="https://www.soundjay.com/misc/sounds/chime-1.wav" type="audio/wav">
-        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBnOq4fC3ZSEHXbXq6qhWFAlHoODyvWsg" type="audio/wav">
-    </audio>
-    
-    <audio id="audio-thinking" preload="auto">
-        <source src="https://www.soundjay.com/misc/sounds/clock-tick-1.wav" type="audio/wav">
-        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBnOq4fC3ZSEHXbXq6qhWFAlHoODyvWsg" type="audio/wav">
-    </audio>
-
+    <!-- Link to the JavaScript file -->
     <script src="script.js"></script>
 </body>
 </html>
