@@ -5,69 +5,117 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MiniMood - Emotional Check-in</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>MiniMood</h1>
-            <p>Reflect on your current state and get a helpful suggestion for your day.</p>
+        <header class="header">
+            <div class="header-content">
+                <h1 class="app-title">MiniMood</h1>
+                <p class="app-subtitle">Reflect on your current state and get a helpful suggestion for your day.</p>
+            </div>
         </header>
 
-        <main>
+        <main class="main-content">
             <!-- Mood Selection Group -->
             <div class="input-group" id="mood-group">
-                <h2>How is your mood?</h2>
+                <h2 class="group-title">How is your mood?</h2>
                 <div class="options">
-                    <button class="option-btn" data-category="mood" data-value="happy">Happy</button>
-                    <button class="option-btn" data-category="mood" data-value="neutral">Neutral</button>
-                    <button class="option-btn" data-category="mood" data-value="sad">Sad</button>
+                    <button class="option-btn mood-happy" data-category="mood" data-value="happy">
+                        <span class="emoji">😊</span>
+                        <span class="label">Happy</span>
+                    </button>
+                    <button class="option-btn mood-neutral" data-category="mood" data-value="neutral">
+                        <span class="emoji">😐</span>
+                        <span class="label">Neutral</span>
+                    </button>
+                    <button class="option-btn mood-sad" data-category="mood" data-value="sad">
+                        <span class="emoji">😔</span>
+                        <span class="label">Sad</span>
+                    </button>
+                    <button class="option-btn mood-unsure" data-category="mood" data-value="unsure">
+                        <span class="emoji">🤔</span>
+                        <span class="label">Not sure</span>
+                    </button>
                 </div>
             </div>
 
             <!-- Sleep Selection Group -->
             <div class="input-group" id="sleep-group">
-                <h2>How was your sleep?</h2>
+                <h2 class="group-title">How was your sleep?</h2>
                 <div class="options">
-                    <button class="option-btn" data-category="sleep" data-value="poor">Poor</button>
-                    <button class="option-btn" data-category="sleep" data-value="adequate">Adequate</button>
+                    <button class="option-btn sleep-poor" data-category="sleep" data-value="poor">
+                        <span class="emoji">😴</span>
+                        <span class="label">Poor</span>
+                    </button>
+                    <button class="option-btn sleep-adequate" data-category="sleep" data-value="adequate">
+                        <span class="emoji">😌</span>
+                        <span class="label">Adequate</span>
+                    </button>
                 </div>
             </div>
 
             <!-- Energy Selection Group -->
             <div class="input-group" id="energy-group">
-                <h2>What is your energy level?</h2>
+                <h2 class="group-title">What is your energy level?</h2>
                 <div class="options">
-                    <button class="option-btn" data-category="energy" data-value="low">Low</button>
-                    <button class="option-btn" data-category="energy" data-value="high">High</button>
+                    <button class="option-btn energy-low" data-category="energy" data-value="low">
+                        <span class="emoji">🔋</span>
+                        <span class="label">Low</span>
+                    </button>
+                    <button class="option-btn energy-high" data-category="energy" data-value="high">
+                        <span class="emoji">⚡</span>
+                        <span class="label">High</span>
+                    </button>
                 </div>
             </div>
 
             <!-- Stress Selection Group -->
             <div class="input-group" id="stress-group">
-                <h2>What is your stress level?</h2>
+                <h2 class="group-title">What is your stress level?</h2>
                 <div class="options">
-                    <button class="option-btn" data-category="stress" data-value="low">Low</button>
-                    <button class="option-btn" data-category="stress" data-value="high">High</button>
+                    <button class="option-btn stress-low" data-category="stress" data-value="low">
+                        <span class="emoji">🧘</span>
+                        <span class="label">Low</span>
+                    </button>
+                    <button class="option-btn stress-high" data-category="stress" data-value="high">
+                        <span class="emoji">😰</span>
+                        <span class="label">High</span>
+                    </button>
                 </div>
             </div>
 
             <!-- Action Button -->
-            <button id="get-suggestion-btn">Get Suggestion</button>
+            <button id="get-suggestion-btn" class="cta-button">
+                <span class="button-text">Get Suggestion</span>
+                <span class="button-icon">✨</span>
+            </button>
 
             <!-- Error Message Container (hidden by default) -->
-            <div id="error-message" class="message" style="display: none;">
-                Please make a selection for all four categories.
+            <div id="error-message" class="message error-message" style="display: none;">
+                <div class="message-content">
+                    <span class="message-icon">⚠️</span>
+                    <span class="message-text">Please make a selection for all four categories.</span>
+                </div>
             </div>
 
             <!-- Result Container (hidden by default) -->
-            <div id="result-container" class="message" style="display: none;">
-                <p id="suggestion-text"></p>
+            <div id="result-container" class="message result-message" style="display: none;">
+                <div class="message-content">
+                    <span class="message-icon">💡</span>
+                    <div class="suggestion-content">
+                        <h3 class="suggestion-title">Your Personalized Suggestion</h3>
+                        <p id="suggestion-text" class="suggestion-text"></p>
+                    </div>
+                </div>
             </div>
         </main>
 
-        <footer>
-            <p>Created based on your emotional inputs.</p>
+        <footer class="footer">
+            <p class="footer-text">Created based on your emotional inputs.</p>
         </footer>
     </div>
 
