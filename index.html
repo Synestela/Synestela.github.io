@@ -1,1 +1,77 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiniMood - Emotional Check-in</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MiniMood</h1>
+            <p>Reflect on your current state and get a helpful suggestion for your day.</p>
+        </header>
+
+        <main>
+            <!-- Mood Selection Group -->
+            <div class="input-group" id="mood-group">
+                <h2>How is your mood?</h2>
+                <div class="options">
+                    <button class="option-btn" data-category="mood" data-value="happy">Happy</button>
+                    <button class="option-btn" data-category="mood" data-value="neutral">Neutral</button>
+                    <button class="option-btn" data-category="mood" data-value="sad">Sad</button>
+                </div>
+            </div>
+
+            <!-- Sleep Selection Group -->
+            <div class="input-group" id="sleep-group">
+                <h2>How was your sleep?</h2>
+                <div class="options">
+                    <button class="option-btn" data-category="sleep" data-value="poor">Poor</button>
+                    <button class="option-btn" data-category="sleep" data-value="adequate">Adequate</button>
+                </div>
+            </div>
+
+            <!-- Energy Selection Group -->
+            <div class="input-group" id="energy-group">
+                <h2>What is your energy level?</h2>
+                <div class="options">
+                    <button class="option-btn" data-category="energy" data-value="low">Low</button>
+                    <button class="option-btn" data-category="energy" data-value="high">High</button>
+                </div>
+            </div>
+
+            <!-- Stress Selection Group -->
+            <div class="input-group" id="stress-group">
+                <h2>What is your stress level?</h2>
+                <div class="options">
+                    <button class="option-btn" data-category="stress" data-value="low">Low</button>
+                    <button class="option-btn" data-category="stress" data-value="high">High</button>
+                </div>
+            </div>
+
+            <!-- Action Button -->
+            <button id="get-suggestion-btn">Get Suggestion</button>
+
+            <!-- Error Message Container (hidden by default) -->
+            <div id="error-message" class="message" style="display: none;">
+                Please make a selection for all four categories.
+            </div>
+
+            <!-- Result Container (hidden by default) -->
+            <div id="result-container" class="message" style="display: none;">
+                <p id="suggestion-text"></p>
+            </div>
+        </main>
+
+        <footer>
+            <p>Created based on your emotional inputs.</p>
+        </footer>
+    </div>
+
+    <!-- Link to the JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>
