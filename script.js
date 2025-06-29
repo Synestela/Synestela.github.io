@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.classList.remove('selected');
             });
             // Add 'selected' class to the clicked button
-            .classList.add('selected');
+            button.classList.add('selected');
 
             // Hide any displayed messages when the user makes a new selection
             errorMessage.style.display = 'none';
